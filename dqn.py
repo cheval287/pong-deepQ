@@ -77,7 +77,7 @@ def compute_td_loss(model, target_model, batch_size, gamma, replay_buffer):
     q_val_next = q_vals_next.max(1)[0]
     exp_q_val = reward + gamma + q_value_next * (1-done)
 
-    loss = (q_val - Variable(exp_q_val.data).pow(2).mean()
+    loss = q_val - Variable(exp_q_val.data).pow(2).mean()
    # for i in range(batch_size):
    #    loss = model(replay_buffer.sample()i) - target_model(state,action,i) 
     
