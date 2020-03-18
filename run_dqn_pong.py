@@ -64,6 +64,8 @@ for frame_idx in range(1, num_frames + 1):
         state = env.reset()
         all_rewards.append((frame_idx, episode_reward))
         episode_reward = 0
+        savetxt('rewards.csv', all_rewards, delimiter=',')
+        savetxt('losses.csv', losses, delimiter=',')
 
     if len(replay_buffer) > replay_initial:
         # We write the loss function
@@ -83,6 +85,8 @@ for frame_idx in range(1, num_frames + 1):
     if frame_idx % 50000 == 0:
         target_model.copy_from(model) #update!
         torch.save(model.state dict(), 'modelsave.pth')
+             
+ 
 
 
 
